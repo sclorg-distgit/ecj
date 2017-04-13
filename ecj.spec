@@ -6,11 +6,11 @@
 
 Epoch: 1
 
-%global qualifier R-4.6-201606061100
+%global qualifier R-4.6.2-201611241400
 
 Summary: Eclipse Compiler for Java
 Name: %{?scl_prefix}ecj
-Version: 4.6
+Version: 4.6.2
 Release: 1.%{baserelease}%{?dist}
 URL: http://www.eclipse.org
 License: EPL
@@ -26,7 +26,6 @@ Patch0: %{pkg_name}-rpmdebuginfo.patch
 
 BuildArch: noarch
 
-BuildRequires: gzip
 BuildRequires: %{?scl_prefix_java_common}ant
 BuildRequires: %{?scl_prefix_maven}javapackages-local
 
@@ -54,7 +53,7 @@ rm -f org/eclipse/jdt/core/JDTCompilerAdapter.java
 %pom_remove_dep org.apache.ant:ant
 
 # Symlinks and aliases
-%mvn_file :ecj ecj eclipse-ecj jdtcore
+%mvn_file :ecj ecj jdtcore
 %mvn_alias org.eclipse.jdt.core.compiler:ecj \
   org.eclipse.tycho:org.eclipse.jdt.core org.eclipse.tycho:org.eclipse.jdt.compiler.apt \
   org.eclipse.jetty.orbit:org.eclipse.jdt.core org.eclipse.jetty.orbit:org.eclipse.jdt.compiler.apt \
@@ -66,7 +65,6 @@ rm -f org/eclipse/jdt/core/JDTCompilerAdapter.java
 %{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 set -e -x
 ant 
-gzip ecj.1
 %{?scl:EOF}
 
 
@@ -81,7 +79,7 @@ install -p -D -m0755 %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/ecj
 
 # Install manpage
 mkdir -p $RPM_BUILD_ROOT%{_mandir}/man1
-install -m 644 -p ecj.1.gz $RPM_BUILD_ROOT%{_mandir}/man1/ecj.1.gz
+install -m 644 -p ecj.1 $RPM_BUILD_ROOT%{_mandir}/man1/ecj.1
 %{?scl:EOF}
 
 
@@ -91,8 +89,11 @@ install -m 644 -p ecj.1.gz $RPM_BUILD_ROOT%{_mandir}/man1/ecj.1.gz
 %{_mandir}/man1/ecj*
 
 %changelog
-* Mon Jul 25 2016 Mat Booth <mat.booth@redhat.com> - 1:4.6-1.1
+* Mon Jan 16 2017 Mat Booth <mat.booth@redhat.com> - 1:4.6.2-1.1
 - Auto SCL-ise package for rh-eclipse46 collection
+
+* Tue Jan 10 2017 Mat Booth <mat.booth@redhat.com> - 1:4.6.2-1
+- Update to Neon.2 release
 
 * Fri Jul 01 2016 Mat Booth <mat.booth@redhat.com> - 1:4.6-1
 - Update to Neon release
