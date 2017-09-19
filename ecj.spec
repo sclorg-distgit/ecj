@@ -6,11 +6,11 @@
 
 Epoch: 1
 
-%global qualifier R-4.6.2-201611241400
+%global qualifier R-4.6.3-201703010400
 
 Summary: Eclipse Compiler for Java
 Name: %{?scl_prefix}ecj
-Version: 4.6.2
+Version: 4.6.3
 Release: 1.%{baserelease}%{?dist}
 URL: http://www.eclipse.org
 License: EPL
@@ -89,8 +89,14 @@ install -m 644 -p ecj.1 $RPM_BUILD_ROOT%{_mandir}/man1/ecj.1
 %{_mandir}/man1/ecj*
 
 %changelog
-* Mon Jan 16 2017 Mat Booth <mat.booth@redhat.com> - 1:4.6.2-1.1
+* Thu Mar 30 2017 Mat Booth <mat.booth@redhat.com> - 1:4.6.3-1.1
 - Auto SCL-ise package for rh-eclipse46 collection
+
+* Wed Mar 29 2017 Mat Booth <mat.booth@redhat.com> - 1:4.6.3-1
+- Update to Neon.3 release
+
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.6.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
 * Tue Jan 10 2017 Mat Booth <mat.booth@redhat.com> - 1:4.6.2-1
 - Update to Neon.2 release
